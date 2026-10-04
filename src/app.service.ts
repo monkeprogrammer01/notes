@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
@@ -17,6 +17,19 @@ export class AppService {
     return this.notes;
   }
   getNote(id: number) {
-    return this.notes[id];
+    const note = this.notes.find((item) => item.id === id);
+    if (!note) {
+      throw new NotFoundException();
+    }
+    return note;
+  }
+
+  deleteNote(id: number) {
+    const index = this.notes.findIndex((item) => item.id === id);
+    if (index === -1) {
+      throw new NotFoundException();
+    }
+    const [removed] = this.notes.splice(index, 1);
+    return removed;
   }
 }

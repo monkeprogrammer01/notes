@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -22,8 +22,13 @@ export class AppController {
   list() {
     return this.appService.listNotes();
   }
-  @Get('/notes/:id')
-  getNote(id: number){
+  @Get('notes/:id')
+  getNote(@Param('id') id: string) {
     return this.appService.getNote(Number(id));
+  }
+
+  @Delete('notes/:id')
+  deleteNote(@Param('id') id: string) {
+    return this.appService.deleteNote(Number(id));
   }
 }
