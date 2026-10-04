@@ -1,6 +1,9 @@
 # notes
 
+## What it does
+
 A small HTTP API for notes. Notes live in memory for the lifetime of the process.
+
 ## Run
 
 Install dependencies once:
