@@ -5,7 +5,7 @@ export class AppService {
   private notes: { id: number; text: string }[] = [];
   private nextId = 1;
   getHello(): string {
-    return 'Hello World!';
+    return process.env.GREETING ?? 'Hello World!';
   }
   createNote(text: string) {
     const note = {id: this.nextId, text};
